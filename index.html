@@ -14,7 +14,7 @@
     "@lucide/lab": "^0.1.2",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
-    "@supabase/Bolt Database-js": "^2.58.0",
+    "@supabase/supabase-js": "^2.58.0",
     "expo": "^54.0.10",
     "expo-blur": "~15.0.7",
     "expo-camera": "~17.0.8",
@@ -173,13 +173,13 @@ export interface Database {
 export type Profile = Database['public']['Tables']['profiles']['Row'];
 export type Meal = Database['public']['Tables']['meals']['Row'];
 export type DailyLog = Database['public']['Tables']['daily_logs']['Row'];
-import { createClient } from '@supabase/Bolt Database-js';
+import { createClient } from '@supabase/supabase-js';;
 import 'react-native-url-polyfill/auto';
 
 const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY!;
 
-export const Bolt Database = createClient(supabaseUrl, supabaseAnonKey, {
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, ( {
   auth: {
     autoRefreshToken: true,
     persistSession: true,
@@ -187,8 +187,8 @@ export const Bolt Database = createClient(supabaseUrl, supabaseAnonKey, {
   },
 });
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { Session, User } from '@supabase/Bolt Database-js';
-import { Bolt Database } from '@/lib/supabase';
+import { Session, User } from '@supabase/supabase-js';;
+import { supabase } from '@/lib/supabase';;
 import { Profile } from '@/types/database';
 
 interface AuthContextType {
